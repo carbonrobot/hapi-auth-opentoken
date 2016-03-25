@@ -1,0 +1,21 @@
+{
+  "name": "hapi-auth-opentoken",
+  "version": "1.0.0",
+  "description": "Opentoken authentication plugin",
+  "main": "index.js",
+  "keywords": [
+    "hapi",
+    "plugin",
+    "auth",
+    "opentoken",
+    "pingfederate"
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
