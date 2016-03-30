@@ -56,7 +56,7 @@ function payload(request, reply) {
             return reply(Boom.unauthorized('Error parsing opentoken'));
         }
 
-        options.validate(request, token, (err, user) => {
+        internals.validate(request, data, (err, user) => {
             if (err) {
                 return reply(err, null);
             }
@@ -65,7 +65,9 @@ function payload(request, reply) {
                 return reply(Boom.unauthorized('User not authenticated'));
             }
 
-            return reply.continue({ credentials: { user: data } });
+            // inject into auth, we cant use continue to do so in the payload block
+            request.auth.credentials.user = user;
+            return reply.continue();
         });
 
     });
@@ -78,7 +80,9 @@ function payload(request, reply) {
  */
 function scheme(server, options) {
     Hoek.assert(typeof options.validate === 'function', 'options.validate must be a valid function in opentoken scheme');
-
+    
+    internals.validate = options.validate;
+    
     return {
         authenticate: authenticate,
         payload: payload,
@@ -86,7 +90,7 @@ function scheme(server, options) {
             payload: true
         }
     };
-};
+}
 
 /**
  * Register the plugin with the hapi ecosystem
