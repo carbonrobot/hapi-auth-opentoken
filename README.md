@@ -1,6 +1,8 @@
 hapi-auth-opentoken
 --------------------
 
+[![npm version](https://badge.fury.io/js/hapi-auth-opentoken.svg)](https://badge.fury.io/js/hapi-auth-opentoken)
+
 Opentoken authentication scheme designed to work with PINGFederate Opentoken endpoints.
 
 ## Usage
